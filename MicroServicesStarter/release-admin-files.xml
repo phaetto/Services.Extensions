@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<update-files>
+  <file search="..\Services.Extensions\bin\Debug\Services.Extensions.dll" to="" />
+  <file search="..\Services.Extensions\bin\Debug\xLibrary.dll" to="" />
+  <file search="..\Services.Extensions\bin\Debug\*.xml" to="" recursive="true" />
+  <file search="..\Services.Extensions\bin\Debug\*.css" to="" recursive="true" />
+</update-files>

@@ -1,0 +1,8 @@
+﻿[
+	{
+		Id: "services-extensions-debug",
+		ServiceName: "Services.Extensions",
+		ContextType: "Services.Extensions.Ui.WorkUnitServer",
+		DllPath: "Services.Extensions.dll",
+	}
+]

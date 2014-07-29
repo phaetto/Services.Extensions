@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Templates>
+
+  <Administration.HomePage tag="html" xlogin="">
+    <Administration.HomePage.Head />
+    <Administration.HomePage.Body />
+  </Administration.HomePage>
+
+  <Administration.HomePage.Head tag="head">
+    <title>Administration</title>
+    <data type="text/css" src="/Ui/Content/administration.css" />
+  </Administration.HomePage.Head>
+
+  <Administration.HomePage.Body tag="body">
+    <header>
+      <h1>Administration of micro-services</h1>
+    </header>
+    <div class="overview">
+      <Administration.HomePage.Body.Status />
+      <Administration.HomePage.Body.Performance />
+    </div>
+    <footer>
+    </footer>
+  </Administration.HomePage.Body>
+
+  <Administration.HomePage.Body.Status>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Service</th>
+          <th>Uptime</th>
+        </tr>
+      </thead>
+      <Administration.HomePage.Body.Status.Rows id="admin-rows" />
+    </table>
+  </Administration.HomePage.Body.Status>
+
+  <Administration.HomePage.Body.Status.Rows mode="server" serverOrigin="/administration" tag="tbody">
+    <tr>
+      <td>#{this.Id()}</td>
+      <td>#{this.Name()}</td>
+      <td>#{this.FormattedUptime()}</td>
+    </tr>
+  </Administration.HomePage.Body.Status.Rows>
+
+  <Administration.HomePage.Body.Performance mode="server" serverOrigin="/administration">
+    <div name="PerformancePieChart" style="width: 600px; height: 400px;" />
+    <data type="text/javascript" src="//www.google.com/jsapi" />
+    <data type="text/javascript-events" src="~/Ui/Content/Administration.Homepage.Body.Performance.js" />
+  </Administration.HomePage.Body.Performance>
+
+</Templates>
