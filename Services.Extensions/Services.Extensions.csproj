@@ -94,13 +94,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Ui\Content\administration.css">
+    <Content Include="Ui\Admin\Content\administration.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Ui\Content\Administration.Homepage.Body.Performance.js">
+    <Content Include="Ui\Admin\Content\Administration.Homepage.Body.Performance.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Ui\Content\administration.xml">
+    <Content Include="Ui\Admin\Content\administration.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
