@@ -85,6 +85,10 @@
     <Compile Include="Ui\Modules\FileSystemModule.cs" />
     <Compile Include="Ui\Modules\WorkUnitHttpModule.cs" />
     <Compile Include="Ui\WorkUnitServer.cs" />
+    <Compile Include="Web\HttpRestHandler.cs" />
+    <Compile Include="Web\xTags\xTagHttpHtmlHandler.cs" />
+    <Compile Include="Web\xTags\xTagHttpHtmlAndRestHandler.cs" />
+    <Compile Include="Web\xTags\xTagHttpRestHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
