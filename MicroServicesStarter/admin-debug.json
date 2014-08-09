@@ -1,9 +1,2 @@
 ﻿{
-	Modules: [
-		{
-			ModuleType: "Services.Extensions.Ui.AdministrationServer",
-			ModuleParameters: [],
-			ModuleDllPath: "Services.Extensions.dll",
-		}
-	]
 }

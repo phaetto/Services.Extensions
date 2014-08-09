@@ -1,8 +1,16 @@
 ﻿[
 	{
-		Id: "services-extensions-debug",
+		Id: "services-worker-debug",
 		ServiceName: "Services.Extensions",
 		ContextType: "Services.Extensions.Ui.WorkUnitServer",
+		DllPath: "Services.Extensions.dll",
+	},
+	
+	{
+		Id: "services-admin-debug",
+		ServiceName: "Services.Extensions",
+		ContextType: "Services.Extensions.Ui.AdministrationServer",
+		Parameters: [ 'localhost', 80 ],
 		DllPath: "Services.Extensions.dll",
 	}
 ]
