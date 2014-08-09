@@ -1,38 +1,74 @@
 ﻿namespace Services.Extensions.Ui
 {
     using System;
+    using System.Linq;
+    using System.Threading;
     using Chains;
     using Chains.Play.Web;
     using Chains.Play.Web.HttpListener;
     using Services.Communication.Protocol;
-    using Services.Extensions.Ui.Actions;
-    using Services.Extensions.Ui.Data;
     using Services.Extensions.Ui.Modules;
+    using Services.Management.Administration.Server;
     using Services.Management.Administration.Worker;
 
-    public sealed class WorkUnitServer : Chain<WorkUnitServer>
+    public sealed class WorkUnitServer : Chain<WorkUnitServer>, IDisposable
     {
         private const int HttpServerThreads = 3;
 
         private readonly HttpServer httpServer;
 
+        public const string ServiceHomepageUriPath = "/administration/services/{0}/";
+
         public WorkUnitServer(WorkUnitContext workUnitContext)
         {
             try
             {
-                var adminAndHostReturnData =
-                    workUnitContext.AdminServer.Do(
-                        new Send<GetAdminAndHostReturnData>(new GetAdminHostAndPortForUiServer()));
+                ServerHost serverData;
+                while(true)
+                {
+                    var reportedData = workUnitContext.AdminServer.Do(new Send<GetReportedDataReturnData>(new GetReportedData()));
 
+                    if (reportedData.Reports.Any(x => x.Value.StartData.ContextType != null
+                        && x.Value.StartData.ContextType.IndexOf(typeof(AdministrationServer).FullName) != -1))
+                    {
+                        var adminData =
+                            reportedData.Reports.First(
+                                x => x.Value.StartData.ContextType.IndexOf(typeof(AdministrationServer).FullName) != -1)
+                                .Value.StartData;
+
+
+                        serverData = new ServerHost(adminData.Parameters[0].ToString(), int.Parse(adminData.Parameters[1].ToString()));
+
+                        break;
+                    }
+
+                    Thread.Sleep(2000);
+                }
+
+                var currentServiceUriPath =
+                    Uri.EscapeUriString(string.Format(ServiceHomepageUriPath, workUnitContext.WorkerData.Id));
+
+                // Get the options that have started the server, and use them
                 httpServer =
-                    new ServerHost(adminAndHostReturnData.Host, adminAndHostReturnData.Port).Do(
-                        new StartHttpServer(new string[0], HttpServerThreads));
+                    new ServerHost(serverData.Parent.Hostname, serverData.Parent.Port)
+                        .Do(new StartHttpServer(new string[0], HttpServerThreads));
 
-                httpServer.Modules.Add(new WorkUnitHttpModule(httpServer, workUnitContext));
+                new WorkUnitHttpRequestHandler(httpServer, workUnitContext, currentServiceUriPath);
 
-                httpServer.Modules.Add(new FileSystemModule(httpServer));
+                //new FileSystemHttpRequestHandler(httpServer); // Needs a pathPrefix or change of the root folder
             }
             catch (NotSupportedException)
+            {
+            }
+        }
+
+        public void Dispose()
+        {
+            try
+            {
+                httpServer.Stop();
+            }
+            catch
             {
             }
         }

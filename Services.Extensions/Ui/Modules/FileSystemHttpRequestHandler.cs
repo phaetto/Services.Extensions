@@ -9,7 +9,7 @@
     using Chains.Play.Web;
     using Chains.Play.Web.HttpListener;
 
-    internal sealed class FileSystemModule : Chain<FileSystemModule>, IHttpRequestHandler
+    internal sealed class FileSystemHttpRequestHandler : Chain<FileSystemHttpRequestHandler>, IHttpRequestHandler
     {
         private const string ContentTypes = @"<?xml version=""1.0""?>
 <mimeTypes>
@@ -717,7 +717,7 @@
 
         private readonly XmlDocument contentTypes;
 
-        public FileSystemModule(
+        public FileSystemHttpRequestHandler(
             HttpServer httpServer,
             string absoluteBaseFolder = null,
             string[] fileSearches = null,
@@ -745,7 +745,7 @@
                 foreach (var fileToRegister in filesToRegister)
                 {
                     var relativeFile = fileToRegister.Substring(absoluteBaseFolder.Length);
-                    var virtualFile = relativeFile.Replace(Path.DirectorySeparatorChar, '/') + "/";
+                    var virtualFile = "/" + relativeFile.Replace(Path.DirectorySeparatorChar, '/') + "/";
                     httpServer.AddPath(virtualFile);
                 }
             }

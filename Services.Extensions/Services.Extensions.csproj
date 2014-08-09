@@ -80,9 +80,9 @@
   <ItemGroup>
     <Compile Include="Ui\AdministrationServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ui\Modules\AdministratorHttpModule.cs" />
-    <Compile Include="Ui\Modules\FileSystemModule.cs" />
-    <Compile Include="Ui\Modules\WorkUnitHttpModule.cs" />
+    <Compile Include="Ui\Modules\AdministratorHttpRequestHandler.cs" />
+    <Compile Include="Ui\Modules\FileSystemHttpRequestHandler.cs" />
+    <Compile Include="Ui\Modules\WorkUnitHttpRequestHandler.cs" />
     <Compile Include="Ui\WorkUnitServer.cs" />
     <Compile Include="Web\HttpRestHandler.cs" />
     <Compile Include="Web\xTags\xTagHttpHtmlHandler.cs" />
@@ -104,6 +104,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\ServiceDownNotifier\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
