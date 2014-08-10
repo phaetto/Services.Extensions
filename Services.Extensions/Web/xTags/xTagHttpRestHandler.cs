@@ -57,9 +57,9 @@
                 || context.Request.Url.AbsolutePath.ToLowerInvariant() == Path + "/";
         }
 
-        public abstract void Get(xTag xtag, bool isAjax);
-        public abstract void Post(xTag xtag, bool isAjax);
-        public abstract void Put(xTag xtag, bool isAjax);
-        public abstract void Delete(xTag xtag, bool isAjax);
+        public abstract void Get(xTagContext xTagContext, bool isAjax);
+        public abstract void Post(xTagContext xTagContext, bool isAjax);
+        public abstract void Put(xTagContext xTagContext, bool isAjax);
+        public abstract void Delete(xTagContext xTagContext, bool isAjax);
     }
 }
