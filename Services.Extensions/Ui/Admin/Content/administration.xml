@@ -24,6 +24,7 @@
   </Administration.HomePage.Body>
 
   <Administration.HomePage.Body.Status>
+    <Administration.HomePage.Body.Status.Error name="AdminError" />
     <table>
       <thead>
         <tr>
@@ -32,17 +33,23 @@
           <th>Uptime</th>
         </tr>
       </thead>
-      <Administration.HomePage.Body.Status.Rows id="admin-rows" />
+      <Administration.HomePage.Body.Status.Rows name="AdminRows" />
     </table>
+    <data type="text/javascript-events" src="~/Ui/Admin/Content/Administration.Homepage.Body.Status.js" />
   </Administration.HomePage.Body.Status>
 
-  <Administration.HomePage.Body.Status.Rows mode="server" serverOrigin="/administration" tag="tbody">
+  <Administration.HomePage.Body.Status.Rows id="adminRows" mode="server" serverOrigin="/administration" tag="tbody">
     <tr>
       <td>#{this.Id()}</td>
-      <td>#{this.Name()}</td>
+      <td>#{this.ServiceName()}</td>
       <td>#{this.FormattedUptime()}</td>
     </tr>
+    <data type="text/javascript-events" src="~/Ui/Admin/Content/Administration.Homepage.Body.Status.Rows.js" />
   </Administration.HomePage.Body.Status.Rows>
+
+  <Administration.HomePage.Body.Status.Error class="error">
+    <div>An error has happened.</div>
+  </Administration.HomePage.Body.Status.Error>
 
   <Administration.HomePage.Body.Performance mode="server" serverOrigin="/administration">
     <div name="PerformancePieChart" style="width: 600px; height: 400px;" />
