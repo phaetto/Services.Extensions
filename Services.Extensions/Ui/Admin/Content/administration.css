@@ -6,7 +6,10 @@
 
 body
 {
-    font-size: 87.5%;
+    /*font-size: 87.5%;*/
+    margin: 0 auto;
+    max-width: 1024px;
+    padding-top: 20px;
 }
 
 @font-face
@@ -58,4 +61,12 @@ a:hover, a:focus
     padding: 20px;
     color: #ff0000;
     display: none;
+}
+
+.status-table {
+    width: 100%;
+}
+
+.formattedUptime {
+    max-width: 250px;
 }

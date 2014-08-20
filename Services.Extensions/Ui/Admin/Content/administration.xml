@@ -25,7 +25,7 @@
 
   <Administration.HomePage.Body.Status>
     <Administration.HomePage.Body.Status.Error name="AdminError" />
-    <table>
+    <table class="status-table">
       <thead>
         <tr>
           <th>Name</th>
@@ -42,7 +42,7 @@
     <tr>
       <td>#{this.Id()}</td>
       <td>#{this.ServiceName()}</td>
-      <td>#{this.FormattedUptime()}</td>
+      <td class="formattedUptime">#{this.FormattedUptime()}</td>
     </tr>
     <data type="text/javascript-events" src="~/Ui/Admin/Content/Administration.Homepage.Body.Status.Rows.js" />
   </Administration.HomePage.Body.Status.Rows>

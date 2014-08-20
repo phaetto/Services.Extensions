@@ -6,7 +6,7 @@
     using Services.Extensions.Web;
     using Services.Management.Administration.Worker;
 
-    public sealed class WorkUnitHttpRequestHandler : HttpRestHandler
+    internal sealed class WorkUnitHttpRequestHandler : HttpRestHandler
     {
         public const string ServiceContentPath = "/ui/service/content/";
 

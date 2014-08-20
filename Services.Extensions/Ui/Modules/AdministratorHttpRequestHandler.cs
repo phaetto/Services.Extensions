@@ -18,7 +18,7 @@
 
         public const string AdminHomepageUriPath = "/administration/";
 
-        private static string PathToContent = string.Format("{0}{1}Ui{1}Admin{1}Content{1}{2}", AppDomain.CurrentDomain.BaseDirectory, Path.DirectorySeparatorChar, "administration.xml");
+        private static readonly string PathToContent = string.Format("{0}{1}Ui{1}Admin{1}Content{1}{2}", AppDomain.CurrentDomain.BaseDirectory, Path.DirectorySeparatorChar, "administration.xml");
 
         public AdministratorHttpRequestHandler(HttpServer httpServer, WorkUnitContext workUnitContext) :
             base(AdminHomepageUriPath, PathToContent, "Administration.HomePage", "Administration.HomePage.Body.Status.Rows")
