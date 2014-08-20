@@ -702,10 +702,6 @@
     <mime>application/x-font-woff</mime>
   </mimeType>
   <mimeType>
-    <fileType>svg</fileType>
-    <mime>image/svg+xml</mime>
-  </mimeType>
-  <mimeType>
     <fileType>ttf</fileType>
     <mime>application/octet-stream</mime>
   </mimeType>
