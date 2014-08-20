@@ -1,12 +1,16 @@
 ﻿{
     ready: function() {
         var self = this;
-        setInterval(function() {
+
+        self.Refresh = function() {
             self.AdminRows.Get(null, function() {
                 // Should load databound values in UI
+                setTimeout(self.Refresh, 1000);
             }, function() {
-                self.AdminError.$.show();
+                self.AdminError.$().show();
             });
-        }, 1000);
+        };
+
+        setTimeout(self.Refresh, 100);
     }
 }
