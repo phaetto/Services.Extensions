@@ -93,6 +93,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Services.Extensions.nuspec" />
     <None Include="Ui\Admin\Content\maven_pro_regular-webfont.eot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -111,8 +112,10 @@
     <None Include="Ui\Admin\Content\raleway_thin-webfont.woff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="update.json" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="nuget-files.xml" />
     <Content Include="Ui\Admin\Content\administration.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -135,6 +138,7 @@
     <Content Include="Ui\Admin\Content\raleway_thin-webfont.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="update-files.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\ServiceDownNotifier\" />
