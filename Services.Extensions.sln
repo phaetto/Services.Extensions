@@ -29,10 +29,10 @@ Global
 		{BF459D30-1EF7-4130-9349-ED02750D7BA6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{30E1C4B5-456E-42DC-8A52-15B962896985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{30E1C4B5-456E-42DC-8A52-15B962896985}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{30E1C4B5-456E-42DC-8A52-15B962896985}.Deploy|Any CPU.ActiveCfg = Debug|Any CPU
-		{30E1C4B5-456E-42DC-8A52-15B962896985}.Deploy|Any CPU.Build.0 = Debug|Any CPU
-		{30E1C4B5-456E-42DC-8A52-15B962896985}.Integration Test|Any CPU.ActiveCfg = Release|Any CPU
-		{30E1C4B5-456E-42DC-8A52-15B962896985}.Integration Test|Any CPU.Build.0 = Release|Any CPU
+		{30E1C4B5-456E-42DC-8A52-15B962896985}.Deploy|Any CPU.ActiveCfg = Deploy|Any CPU
+		{30E1C4B5-456E-42DC-8A52-15B962896985}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
+		{30E1C4B5-456E-42DC-8A52-15B962896985}.Integration Test|Any CPU.ActiveCfg = Integration Test|Any CPU
+		{30E1C4B5-456E-42DC-8A52-15B962896985}.Integration Test|Any CPU.Build.0 = Integration Test|Any CPU
 		{30E1C4B5-456E-42DC-8A52-15B962896985}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30E1C4B5-456E-42DC-8A52-15B962896985}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
