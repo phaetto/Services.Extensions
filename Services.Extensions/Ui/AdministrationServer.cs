@@ -3,6 +3,7 @@
     using Chains;
     using Chains.Play.Web;
     using Chains.Play.Web.HttpListener;
+    using Services.Extensions.Contexts.ServiceStarter;
     using Services.Extensions.Ui.Modules;
     using Services.Management.Administration.Worker;
 
@@ -11,6 +12,8 @@
         private const int HttpServerThreads = 3;
 
         private readonly HttpServer httpServer;
+
+        private readonly ServiceStarterContext serviceStarterContext = new ServiceStarterContext();
 
         public AdministrationServer(string hostname, int port, WorkUnitContext workUnitContext)
         {
