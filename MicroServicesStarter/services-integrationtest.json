@@ -1,12 +1,20 @@
 ﻿[
-	{
-		"Id":"Example-Integration-Test",
-		"ServiceName":"Example",
-		"DllPath":"Example.dll",
-		"ContextType":"Example.Context",
+	/*{
+		Id: "services-admin-debug",
+		ServiceName: "Services.Extensions",
+		ContextType: "Services.Extensions.Ui.AdministrationServer",
+		Parameters: [ 'localhost', 80 ],
+		DllPath: "Services.Extensions.dll",
 		"AdminHost":"localhost",
 		"AdminPort": 11001,
-		"ApiKey":null,
-		"Session":null,
-	}
+	},*/
+
+	{
+		Id: "auto-service-starter",
+		ServiceName: "Services.Extensions",
+		ContextType: "Services.Extensions.Contexts.ServiceStarter.ServiceStarterContext",
+		DllPath: "Services.Extensions.dll",
+		"AdminHost":"localhost",
+		"AdminPort": 11001,
+	},
 ]
