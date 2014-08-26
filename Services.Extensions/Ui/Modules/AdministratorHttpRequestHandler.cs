@@ -21,12 +21,9 @@
         private static readonly string PathToContent = string.Format("{0}{1}Ui{1}Admin{1}Content{1}{2}", AppDomain.CurrentDomain.BaseDirectory, Path.DirectorySeparatorChar, "administration.xml");
 
         public AdministratorHttpRequestHandler(HttpServer httpServer, WorkUnitContext workUnitContext) :
-            base(AdminHomepageUriPath, PathToContent, "Administration.HomePage", "Administration.HomePage.Body.Status.Rows")
+            base(httpServer, AdminHomepageUriPath, PathToContent, "Administration.HomePage", "Administration.HomePage.Body.Status.Rows")
         {
             this.workUnitContext = workUnitContext;
-            httpServer.AddPath(AdminHomepageUriPath);
-
-            httpServer.Modules.Add(this);
         }
 
         public override void Get(xTagContext xTagContext, bool isAjax)

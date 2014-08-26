@@ -18,12 +18,14 @@
 
         protected readonly string RequestPath;
 
-        protected xTagHttpHtmlAndRestHandler(string path, string libraryDocument, string tagName, string optionalRestTag = null)
+        protected xTagHttpHtmlAndRestHandler(HttpServer httpServer, string path, string libraryDocument, string tagName, string optionalRestTag = null)
         {
             this.libraryDocument = libraryDocument;
             this.tagName = tagName;
             this.optionalRestTag = optionalRestTag;
             RequestPath = path.EndsWith("/") ? path.Substring(0, path.Length - 1) : path;
+            httpServer.Modules.Add(this);
+            httpServer.AddPath(RequestPath + "/");
         }
 
         public bool ResolveRequest(HttpListenerContext context)

@@ -14,13 +14,15 @@
 
         private readonly string tagName;
 
-        protected readonly string Path;
+        protected readonly string RequestPath;
 
-        protected xTagHttpRestHandler(string path, string libraryDocument, string tagName)
+        protected xTagHttpRestHandler(HttpServer httpServer, string path, string libraryDocument, string tagName)
         {
             this.libraryDocument = libraryDocument;
             this.tagName = tagName;
-            Path = path.EndsWith("/") ? path.Substring(0, path.Length - 1) : path;
+            RequestPath = path.EndsWith("/") ? path.Substring(0, path.Length - 1) : path;
+            httpServer.Modules.Add(this);
+            httpServer.AddPath(RequestPath + "/");
         }
 
         public bool ResolveRequest(HttpListenerContext context)
@@ -53,8 +55,8 @@
 
         private bool CheckPathForMatch(HttpListenerContext context)
         {
-            return context.Request.Url.AbsolutePath.ToLowerInvariant() == Path
-                || context.Request.Url.AbsolutePath.ToLowerInvariant() == Path + "/";
+            return context.Request.Url.AbsolutePath.ToLowerInvariant() == RequestPath
+                || context.Request.Url.AbsolutePath.ToLowerInvariant() == RequestPath + "/";
         }
 
         public abstract void Get(xTagContext xTagContext, bool isAjax);

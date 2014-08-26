@@ -7,14 +7,16 @@
 
     public abstract class HttpRestHandler : AbstractChain, IHttpRequestHandler
     {
-        protected readonly string Path;
+        protected readonly string RequestPath;
 
         protected readonly string DefaultDocument;
 
-        protected HttpRestHandler(string path, string defaultDocument = null)
+        protected HttpRestHandler(HttpServer httpServer, string path, string defaultDocument = null)
         {
             DefaultDocument = defaultDocument;
-            Path = path.EndsWith("/") ? path.Substring(0, path.Length - 1) : path;
+            RequestPath = path.EndsWith("/") ? path.Substring(0, path.Length - 1) : path;
+            httpServer.Modules.Add(this);
+            httpServer.AddPath(RequestPath + "/");
         }
 
         public bool ResolveRequest(HttpListenerContext context)
@@ -51,9 +53,9 @@
 
         private bool CheckPathForMatch(HttpListenerContext context)
         {
-            return context.Request.Url.AbsolutePath.ToLowerInvariant() == Path
-                || context.Request.Url.AbsolutePath.ToLowerInvariant() == Path + "/"
-                || (!string.IsNullOrWhiteSpace(DefaultDocument) && context.Request.Url.AbsolutePath.ToLowerInvariant() == Path + "/" + DefaultDocument);
+            return context.Request.Url.AbsolutePath.ToLowerInvariant() == RequestPath
+                || context.Request.Url.AbsolutePath.ToLowerInvariant() == RequestPath + "/"
+                || (!string.IsNullOrWhiteSpace(DefaultDocument) && context.Request.Url.AbsolutePath.ToLowerInvariant() == RequestPath + "/" + DefaultDocument);
         }
 
         public abstract void Get(HttpListenerContext context);

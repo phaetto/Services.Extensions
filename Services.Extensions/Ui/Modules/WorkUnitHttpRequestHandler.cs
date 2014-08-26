@@ -11,11 +11,8 @@
         public const string ServiceContentPath = "/ui/service/content/";
 
         public WorkUnitHttpRequestHandler(HttpServer httpServer, WorkUnitContext workUnitContext, string path)
-            : base(path)
+            : base(httpServer, path)
         {
-            httpServer.AddPath(path);
-
-            httpServer.Modules.Add(this);
         }
 
         public override void Get(HttpListenerContext context)
