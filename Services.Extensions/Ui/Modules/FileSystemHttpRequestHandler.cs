@@ -712,6 +712,8 @@
 
         private readonly XmlDocument contentTypes;
 
+        private readonly string absoluteBaseFolder;
+
         public FileSystemHttpRequestHandler(
             HttpServer httpServer,
             string absoluteBaseFolder = null,
@@ -719,6 +721,7 @@
             SearchOption searchOption = SearchOption.AllDirectories)
         {
             absoluteBaseFolder = absoluteBaseFolder ?? AppDomain.CurrentDomain.BaseDirectory;
+            this.absoluteBaseFolder = absoluteBaseFolder;
 
             contentTypes = new XmlDocument();
             contentTypes.LoadXml(ContentTypes);
@@ -750,7 +753,7 @@
 
         public bool ResolveRequest(HttpListenerContext context)
         {
-            var path = AppDomain.CurrentDomain.BaseDirectory
+            var path = absoluteBaseFolder
                 + context.Request.Url.LocalPath.Substring(1).Replace('/', Path.DirectorySeparatorChar);
 
             if (File.Exists(path))
