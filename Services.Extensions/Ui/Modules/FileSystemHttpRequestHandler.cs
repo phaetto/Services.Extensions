@@ -742,9 +742,12 @@
 
                 foreach (var fileToRegister in filesToRegister)
                 {
-                    var relativeFile = fileToRegister.Substring(absoluteBaseFolder.Length);
-                    var virtualFile = "/" + relativeFile.Replace(Path.DirectorySeparatorChar, '/') + "/";
-                    httpServer.AddPath(virtualFile);
+                    if (fileToRegister.EndsWith(searchPattern.Substring(1)))
+                    {
+                        var relativeFile = fileToRegister.Substring(absoluteBaseFolder.Length);
+                        var virtualFile = "/" + relativeFile.Replace(Path.DirectorySeparatorChar, '/') + "/";
+                        httpServer.AddPath(virtualFile);
+                    }
                 }
             }
 
