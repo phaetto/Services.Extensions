@@ -2,14 +2,13 @@
 {
     using System;
     using System.IO;
-    using System.Linq;
     using System.Net;
     using System.Xml;
     using Chains;
     using Chains.Play.Web;
     using Chains.Play.Web.HttpListener;
 
-    internal sealed class FileSystemHttpRequestHandler : Chain<FileSystemHttpRequestHandler>, IHttpRequestHandler
+    public sealed class FileSystemHttpRequestHandler : Chain<FileSystemHttpRequestHandler>, IHttpRequestHandler
     {
         private const string ContentTypes = @"<?xml version=""1.0""?>
 <mimeTypes>
