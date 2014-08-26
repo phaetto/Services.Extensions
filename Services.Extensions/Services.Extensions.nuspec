@@ -10,7 +10,7 @@
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>
-      Connects http handlers with xtag-ui context and provides the base classes for admin/worker management
+      Connects http handlers with xtag-ui context and provides the base classes for admin/worker management from web.
       
       Supports Mono.
     </description>
@@ -22,6 +22,7 @@
     <dependencies>
       <dependency id="xLibrary" version="0.10.0.1" />
       <dependency id="Chains" version="0.9.3.1" />
+      <dependency id="Services.Communication" version="0.9.3.1" />
       <dependency id="Services.Management" version="0.9.3.1" />
       <dependency id="log4net" version="2.0.3" />
       <dependency id="Newtonsoft.Json" version="4.5.11" />
