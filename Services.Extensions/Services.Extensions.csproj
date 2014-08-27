@@ -96,6 +96,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contexts\ServiceAutoManager\PersistentAutoServiceContext.cs" />
+    <Compile Include="Contexts\ServiceAutoManager\PersistentAutoServiceData.cs" />
+    <Compile Include="Contexts\ServiceAutoManager\UpdatePersistentAutoServiceData.cs" />
     <Compile Include="Contexts\ServiceStarter\UpdatePersistentStarterData.cs" />
     <Compile Include="Contexts\ServiceStarter\PersistentServiceStarterContext.cs" />
     <Compile Include="Contexts\ServiceStarter\PersistentServiceStarterData.cs" />
@@ -165,9 +168,7 @@
     </Content>
     <Content Include="update-files.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contexts\ServiceDownNotifier\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
