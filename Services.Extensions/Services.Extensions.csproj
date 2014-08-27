@@ -108,7 +108,9 @@
     <Compile Include="Ui\Modules\FileSystemHttpRequestHandler.cs" />
     <Compile Include="Ui\Modules\WorkUnitHttpRequestHandler.cs" />
     <Compile Include="Ui\WorkUnitServer.cs" />
+    <Compile Include="Web\DefaultFileHttpHandler.cs" />
     <Compile Include="Web\HttpRestHandler.cs" />
+    <Compile Include="Web\RedirectHttpHandler.cs" />
     <Compile Include="Web\xTags\xTagHttpHtmlHandler.cs" />
     <Compile Include="Web\xTags\xTagHttpHtmlAndRestHandler.cs" />
     <Compile Include="Web\xTags\xTagHttpRestHandler.cs" />
