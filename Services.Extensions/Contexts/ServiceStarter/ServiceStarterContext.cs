@@ -1,24 +1,46 @@
 ﻿namespace Services.Extensions.Contexts.ServiceStarter
 {
-    using System;
+    using System.IO;
+    using System.Threading;
     using Chains;
     using Chains.Persistence;
+    using Services.Communication.Protocol;
+    using Services.Management.Administration.Server;
+    using Services.Management.Administration.Worker;
 
     public sealed class ServiceStarterContext : Chain<ServiceStarterContext>
     {
-        internal const string DefaultIdForStartingOptions = "default";
+        private readonly WorkUnitContext workUnitContext;
 
         internal readonly PersistentServiceStarterContext PersistentServiceStarterContext;
 
-        // This must be the same for each admin, should not be scaled and can be used from any service.
-        private readonly string dataFolder = AppDomain.CurrentDomain.BaseDirectory + "Data";
+        public ServiceStarterContext(WorkUnitContext workUnitContext)
+        {
+            this.workUnitContext = workUnitContext;
+            PersistentServiceStarterContext = new PersistentServiceStarterContext(
+                new PersistentServiceStarterData
+                {
+                    Id = PersistentServiceStarterContext.DefaultIdForStartingOptions
+                },
+                new FilePersistentStoreWithMemorySnapshotCache<PersistentServiceStarterData>(
+                    string.Format(PersistentServiceStarterContext.DataFolderUnformatted, Path.DirectorySeparatorChar)));
+
+            new Thread(StartOtherServices).Start();
+        }
 
         public ServiceStarterContext()
         {
-            PersistentServiceStarterContext =
-                new PersistentServiceStarterContext(
-                    new PersistentServiceStarterData { Id = DefaultIdForStartingOptions }, 
-                    new FilePersistentStoreWithMemorySnapshotCache<PersistentServiceStarterData>(dataFolder));
+        }
+
+        private void StartOtherServices()
+        {
+            foreach (var serviceEntry in PersistentServiceStarterContext.Data.ServicesToStart)
+            {
+                workUnitContext.AdminServer.Do(new Send(new StartWorkerProcess(serviceEntry)));
+                workUnitContext.LogLine("Starting service {0} with id {1}", serviceEntry.Id, serviceEntry.ServiceName);
+            }
+
+            workUnitContext.Stop();
         }
     }
 }

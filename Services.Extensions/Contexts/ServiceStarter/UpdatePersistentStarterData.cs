@@ -15,7 +15,7 @@
 
         public PersistentServiceStarterContext Act(PersistentServiceStarterContext context)
         {
-            context.Data.Id = ServiceStarterContext.DefaultIdForStartingOptions;
+            context.Data.Id = PersistentServiceStarterContext.DefaultIdForStartingOptions;
             context.Data.ServicesToStart = workerDataToPersist;
 
             return context;
