@@ -40,7 +40,7 @@
                 new ServerHost(hostname, port, AdministratorHttpRequestHandler.AdminHomepageUriPath).Do(
                     new StartHttpServer(new string[0], HttpServerThreads));
 
-            new AdministratorHttpRequestHandler(httpServer, workUnitContext);
+            new AdministratorHttpRequestHandler(httpServer, workUnitContext, persistentServiceStarterContext);
 
             // string.Format("{0}Ui{1}Admin{1}Content{1}", AppDomain.CurrentDomain.BaseDirectory, Path.DirectorySeparatorChar)
             new FileSystemHttpRequestHandler(httpServer);

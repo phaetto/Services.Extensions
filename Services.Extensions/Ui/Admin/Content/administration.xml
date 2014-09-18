@@ -39,10 +39,14 @@
   </Administration.HomePage.Body.Status>
 
   <Administration.HomePage.Body.Status.Rows id="adminRows" mode="server" serverOrigin="/administration" tag="tbody">
+    <data type="text/name-value" name="serviceId"><![CDATA[]]></data>
     <tr>
       <td>#{this.Id()}</td>
       <td>#{this.ServiceName()}</td>
       <td class="formattedUptime">#{this.FormattedUptime()}</td>
+      <td class="formattedUptime">
+        <input type="checkbox" class="autostart" value="true" data-isautostarting="#{this.IsAutoStarting()}" data-id="#{this.Id()}" />
+      </td>
     </tr>
     <data type="text/javascript-events" src="~/Ui/Admin/Content/Administration.Homepage.Body.Status.Rows.js" />
   </Administration.HomePage.Body.Status.Rows>

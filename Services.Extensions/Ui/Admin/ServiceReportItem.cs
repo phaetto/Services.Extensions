@@ -7,5 +7,7 @@
         public string ServiceName;
 
         public string FormattedUptime;
+
+        public bool IsAutoStarting;
     }
 }
