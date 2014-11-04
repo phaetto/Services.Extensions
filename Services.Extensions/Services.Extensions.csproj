@@ -122,31 +122,16 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Services.Extensions.nuspec" />
-    <None Include="Ui\Admin\Content\maven_pro_regular-webfont.eot">
+    <None Include="Ui\Admin\Content\global\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Ui\Admin\Content\maven_pro_regular-webfont.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ui\Admin\Content\maven_pro_regular-webfont.woff">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ui\Admin\Content\raleway_thin-webfont.eot">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ui\Admin\Content\raleway_thin-webfont.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Ui\Admin\Content\raleway_thin-webfont.woff">
+    <None Include="Ui\Admin\Content\global\plugins\font-awesome\fonts\fontawesome-webfont.woff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="update.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="nuget-files.xml" />
-    <Content Include="Ui\Admin\Content\administration.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Ui\Admin\Content\Administration.Homepage.Body.Performance.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -160,10 +145,46 @@
     <Content Include="Ui\Admin\Content\Administration.Homepage.Body.Status.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Ui\Admin\Content\maven_pro_regular-webfont.svg">
+    <Content Include="Ui\Admin\Content\global\css\components.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Ui\Admin\Content\raleway_thin-webfont.svg">
+    <Content Include="Ui\Admin\Content\global\css\plugins.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ui\Admin\Content\global\plugins\bootstrap\css\bootstrap.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ui\Admin\Content\global\plugins\bootstrap\css\bootstrap.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ui\Admin\Content\global\plugins\bootstrap\js\bootstrap.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ui\Admin\Content\global\plugins\bootstrap\js\bootstrap.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ui\Admin\Content\global\plugins\font-awesome\css\font-awesome.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ui\Admin\Content\global\plugins\font-awesome\css\font-awesome.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ui\Admin\Content\layout3\css\custom.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ui\Admin\Content\layout3\css\layout.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ui\Admin\Content\layout3\css\themes\default.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ui\Admin\Content\layout3\img\ajax-loading.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ui\Admin\Content\layout3\img\ajax-modal-loading.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ui\Admin\Content\layout3\scripts\layout.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="update-files.xml" />

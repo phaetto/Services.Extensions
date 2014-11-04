@@ -10,7 +10,7 @@
 		Id: "services-admin-debug",
 		ServiceName: "Services.Extensions",
 		ContextType: "Services.Extensions.Ui.AdministrationServer",
-		Parameters: [ 'localhost', 80 ],
+		Parameters: [ 'localhost', 8075 ],
 		DllPath: "Services.Extensions.dll",
 	}
 ]

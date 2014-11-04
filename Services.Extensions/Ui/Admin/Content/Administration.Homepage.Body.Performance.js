@@ -19,7 +19,7 @@
         }
         
         $(function() {
-            google.load('visualization', '1', { packages: ['corechart'], callback: drawVisualization });
+            // google.load('visualization', '1', { packages: ['corechart'], callback: drawVisualization });
         });
     }
 }
