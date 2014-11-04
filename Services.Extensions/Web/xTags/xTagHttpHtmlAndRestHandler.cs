@@ -40,7 +40,8 @@
                         xcontext =>
                             xcontext.Do(new CreateTag(optionalRestTag ?? tagName))
                                 .Do(new CheckIfRestRequest(onGet: Get, onPost: Post, onPut: Put, onDelete: Delete)),
-                        xcontext => xcontext.Do(new CreateTag(tagName)).Do(new RenderHtml())).ApplyOutputToHttpContext();
+                        xcontext => xcontext.Do(new CreateTag(tagName)).Do(new RenderHtml()))
+                        .ApplyOutputToHttpContext();
 
                     return true;
                 }

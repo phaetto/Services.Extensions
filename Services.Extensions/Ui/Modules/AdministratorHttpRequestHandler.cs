@@ -1,12 +1,10 @@
 ﻿namespace Services.Extensions.Ui.Modules
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using Chains.Play.Web.HttpListener;
     using Services.Communication.Protocol;
-    using Services.Extensions.Contexts.ServiceAutoManager;
     using Services.Extensions.Contexts.ServiceStarter;
     using Services.Extensions.Ui.Admin;
     using Services.Extensions.Web.xTags;
