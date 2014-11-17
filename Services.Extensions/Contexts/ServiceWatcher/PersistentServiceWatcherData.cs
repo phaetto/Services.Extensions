@@ -1,8 +1,8 @@
-﻿namespace Services.Extensions.Contexts.ServiceAutoManager
+﻿namespace Services.Extensions.Contexts.ServiceWatcher
 {
     using Chains.Persistence;
 
-    internal sealed class PersistentAutoServiceData : SerializableSpecificationWithId
+    internal sealed class PersistentServiceWatcherData : SerializableSpecificationWithId
     {
         public bool RestartOnFail = true;
 

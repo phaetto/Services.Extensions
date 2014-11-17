@@ -96,9 +96,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contexts\ServiceAutoManager\PersistentAutoServiceContext.cs" />
-    <Compile Include="Contexts\ServiceAutoManager\PersistentAutoServiceData.cs" />
-    <Compile Include="Contexts\ServiceAutoManager\UpdatePersistentAutoServiceData.cs" />
+    <Compile Include="Contexts\ServiceWatcher\PersistentServiceWatcherContext.cs" />
+    <Compile Include="Contexts\ServiceWatcher\PersistentServiceWatcherData.cs" />
+    <Compile Include="Contexts\ServiceWatcher\UpdatePersistentServiceWatcherData.cs" />
     <Compile Include="Contexts\ServiceStarter\UpdatePersistentStarterData.cs" />
     <Compile Include="Contexts\ServiceStarter\PersistentServiceStarterContext.cs" />
     <Compile Include="Contexts\ServiceStarter\PersistentServiceStarterData.cs" />
