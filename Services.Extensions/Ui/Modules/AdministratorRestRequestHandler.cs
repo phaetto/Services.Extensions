@@ -1,7 +1,6 @@
 ﻿namespace Services.Extensions.Ui.Modules
 {
     using System;
-    using System.IO;
     using System.Linq;
     using System.Net;
     using Chains.Play.Web;

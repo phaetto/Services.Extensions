@@ -1,20 +1,20 @@
 ﻿[
-	/*{
+	{
 		Id: "services-admin-debug",
 		ServiceName: "Services.Extensions",
 		ContextType: "Services.Extensions.Ui.AdministrationServer",
-		Parameters: [ 'localhost', 80 ],
+		Parameters: [ 'localhost', 8080 ],
 		DllPath: "Services.Extensions.dll",
 		"AdminHost":"localhost",
 		"AdminPort": 11001,
-	},*/
+	},
 
-	{
+	/*{
 		Id: "auto-service-starter",
 		ServiceName: "Services.Extensions",
 		ContextType: "Services.Extensions.Contexts.ServiceStarter.ServiceStarterContext",
 		DllPath: "Services.Extensions.dll",
 		"AdminHost":"localhost",
 		"AdminPort": 11001,
-	},
+	},*/
 ]
