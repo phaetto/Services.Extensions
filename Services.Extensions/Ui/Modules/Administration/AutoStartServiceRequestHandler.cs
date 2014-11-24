@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using Chains.Play;
     using Chains.Play.Web.HttpListener;
     using Services.Communication.Protocol;
     using Services.Extensions.Contexts.ServiceStarter;

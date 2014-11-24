@@ -1,10 +1,8 @@
 ﻿namespace Services.Extensions.Ui
 {
-    using System;
     using System.IO;
     using Chains;
     using Chains.Persistence;
-    using Chains.Play.Web;
     using Chains.Play.Web.HttpListener;
     using Services.Extensions.Contexts.ServiceStarter;
     using Services.Extensions.Ui.Modules;

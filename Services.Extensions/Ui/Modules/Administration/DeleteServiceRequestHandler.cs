@@ -1,7 +1,6 @@
 ﻿namespace Services.Extensions.Ui.Modules.Administration
 {
     using System;
-    using Chains.Play;
     using Chains.Play.Web.HttpListener;
     using Services.Communication.Protocol;
     using Services.Extensions.Web.xTags;
