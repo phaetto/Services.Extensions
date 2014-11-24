@@ -14,12 +14,15 @@
 
         private readonly string tagName;
 
+        private readonly bool skipCheckForId;
+
         protected readonly string RequestPath;
 
-        protected xTagHttpRestHandler(HttpServer httpServer, string path, string libraryDocument, string tagName)
+        protected xTagHttpRestHandler(HttpServer httpServer, string path, string libraryDocument, string tagName, bool skipCheckForId = false)
         {
             this.libraryDocument = libraryDocument;
             this.tagName = tagName;
+            this.skipCheckForId = skipCheckForId;
             RequestPath = path.EndsWith("/") ? path.Substring(0, path.Length - 1) : path;
             httpServer.Modules.Add(this);
             httpServer.AddPath(RequestPath + "/");
@@ -34,7 +37,7 @@
                     var resultContext =
                         new xContext(new HttpContextInfo(context)).Do(new LoadLibrary(libraryDocument))
                             .Do(new CreateTag(tagName))
-                            .Do(new CheckIfRestRequest(onGet: Get, onPost: Post, onPut: Put, onDelete: Delete));
+                            .Do(new CheckIfRestRequest(onGet: Get, onPost: Post, onPut: Put, onDelete: Delete, skipCheckForId: skipCheckForId));
 
                     if (resultContext != null)
                     {
