@@ -2,14 +2,12 @@
 <Templates>
 
   <Administration.HomePage tag="html" xlogin="">
-    <Administration.HomePage.Head>
-      <Title>Micro-Services - Monitoring</Title>
-    </Administration.HomePage.Head>
+    <Administration.HomePage.Head />
     <Administration.HomePage.Body />
   </Administration.HomePage>
 
   <Administration.HomePage.Head tag="head">
-    <title name="Title" />
+    <title name="Title">#{this.Header.Title()}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
@@ -30,7 +28,7 @@
     <Administration.Header />
     <div class="page-content">
       <div class="container">
-        <Administration.HomePage.Breadcrumbs />
+        <!--<Administration.HomePage.Breadcrumbs />-->
         <Administration.HomePage.Body.Status />
         <Administration.HomePage.Body.Performance />
       </div>
@@ -101,7 +99,7 @@
 
   <Administration.Footer class="page-footer">
     <div class="container">
-      2014 &amp;copy; Metronic. All Rights Reserved.
+      Copyright 2014-#{this.Footer.ToYear()} Alexander Mantzoukas. All Rights Reserved.
     </div>
   </Administration.Footer>
 
@@ -144,7 +142,7 @@
         <div class="hor-menu ">
           <ul class="nav navbar-nav">
             <li>
-              <a href="index.html">Dashboard</a>
+              <a href="#{this.Header.DashboardUri()}">Dashboard</a>
             </li>
           </ul>
         </div>
@@ -156,7 +154,7 @@
 
   <Administration.HomePage.Breadcrumbs class="page-breadcrumb breadcrumb">
     <li>
-      <a href="#">Home</a>
+      <a href="#{this.Header.DashboardUri()}">Home</a>
       <i class="fa fa-circle"></i>
     </li>
     <li>
