@@ -8,17 +8,14 @@
     using Chains.Play.Web.HttpListener;
     using Services.Extensions.Contexts.ServiceStarter;
     using Services.Extensions.Ui.Modules;
+    using Services.Extensions.Ui.Modules.Administration;
     using Services.Management.Administration.Worker;
 
-    public sealed class AdministrationServer : Chain<AdministrationServer>, IDisposable
+    public sealed class AdministrationServer : Chain<AdministrationServer>
     {
-        private const int HttpServerThreads = 3;
-
-        private readonly HttpServer httpServer;
-
         private readonly PersistentServiceStarterContext persistentServiceStarterContext;
 
-        public AdministrationServer(string hostname, int port, WorkUnitContext workUnitContext)
+        public AdministrationServer(WorkUnitContext workUnitContext)
         {
             persistentServiceStarterContext = new PersistentServiceStarterContext(
                 new PersistentServiceStarterData
@@ -28,26 +25,25 @@
                 new FilePersistentStore<PersistentServiceStarterData>(
                     string.Format(PersistentServiceStarterContext.DataFolderUnformatted, Path.DirectorySeparatorChar)));
 
-            httpServer =
-                new ServerHost(hostname, port, AdministratorHttpRequestHandler.AdminHomepageUriPath).Do(
-                    new StartHttpServer(new string[0], HttpServerThreads));
+            var httpServer = workUnitContext.ContextServer.ServerProtocolStack.ServerProvider as HttpServer;
 
-            new AdministratorHttpRequestHandler(httpServer, workUnitContext, persistentServiceStarterContext);
-
-            new AdministratorRestRequestHandler(httpServer, workUnitContext, persistentServiceStarterContext);
-
-            // string.Format("{0}Ui{1}Admin{1}Content{1}", AppDomain.CurrentDomain.BaseDirectory, Path.DirectorySeparatorChar)
-            new FileSystemHttpRequestHandler(httpServer);
-        }
-
-        public void Dispose()
-        {
-            try
+            if (httpServer != null)
             {
-                httpServer.Stop();
+                new AdministratorHttpRequestHandler(httpServer, workUnitContext, persistentServiceStarterContext);
+
+                new StartServiceRequestHandler(httpServer, workUnitContext);
+                new StopServiceRequestHandler(httpServer, workUnitContext);
+                new DeleteServiceRequestHandler(httpServer, workUnitContext);
+                new AutoStartServiceRequestHandler(httpServer, workUnitContext, persistentServiceStarterContext);
+
+                // string.Format("{0}Ui{1}Admin{1}Content{1}", AppDomain.CurrentDomain.BaseDirectory, Path.DirectorySeparatorChar)
+                new FileSystemHttpRequestHandler(httpServer);
             }
-            catch (Exception)
+            else
             {
+                workUnitContext.LogLine("This module only works when http sharing is on. Nothing to do... Closing...");
+                workUnitContext.ReportToAdmin();
+                workUnitContext.Stop();
             }
         }
     }

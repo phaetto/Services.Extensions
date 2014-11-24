@@ -109,8 +109,11 @@
     <Compile Include="Ui\AdministrationServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ui\Admin\ServiceReportItem.cs" />
-    <Compile Include="Ui\Modules\AdministratorHttpRequestHandler.cs" />
-    <Compile Include="Ui\Modules\AdministratorRestRequestHandler.cs" />
+    <Compile Include="Ui\Modules\Administration\AdministratorHttpRequestHandler.cs" />
+    <Compile Include="Ui\Modules\Administration\AutoStartServiceRequestHandler.cs" />
+    <Compile Include="Ui\Modules\Administration\DeleteServiceRequestHandler.cs" />
+    <Compile Include="Ui\Modules\Administration\StopServiceRequestHandler.cs" />
+    <Compile Include="Ui\Modules\Administration\StartServiceRequestHandler.cs" />
     <Compile Include="Ui\Modules\FileSystemHttpRequestHandler.cs" />
     <Compile Include="Ui\Modules\WorkUnitHttpRequestHandler.cs" />
     <Compile Include="Ui\WorkUnitServer.cs" />
@@ -143,10 +146,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Ui\Admin\Content\Administration.Homepage.Body.Status.Rows.js">
+    <Content Include="Ui\Admin\Content\Administration.HomePage.Buttons.ButtonActions.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Ui\Admin\Content\Administration.Homepage.Body.Status.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ui\Admin\Content\Administration.HomePage.Buttons.AutoStartService.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Ui\Admin\Content\global\css\components.css">

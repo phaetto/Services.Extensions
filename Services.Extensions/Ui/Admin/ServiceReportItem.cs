@@ -9,5 +9,7 @@
         public string FormattedUptime;
 
         public bool IsAutoStarting;
+
+        public string State;
     }
 }

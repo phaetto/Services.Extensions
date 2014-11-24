@@ -182,7 +182,8 @@
               <th>Name</th>
               <th>Service</th>
               <th>Uptime</th>
-              <th>...</th>
+              <th>Autostart</th>
+              <th>Manage</th>
             </tr>
           </thead>
           <Administration.HomePage.Body.Status.Rows name="AdminRows" />
@@ -194,18 +195,51 @@
 
   <Administration.HomePage.Body.Status.Rows id="adminRows" mode="server" serverOrigin="/administration" tag="tbody">
     <data type="text/name-value" name="serviceId"><![CDATA[]]></data>
+    <data type="text/name-value" name="runtimeApplicationData"><![CDATA[[]]]></data>
     <tr>
       <td>#{this.Id()}</td>
       <td>#{this.ServiceName()}</td>
       <td class="formattedUptime">#{this.FormattedUptime()}</td>
       <td class="formattedUptime">
-        <input type="checkbox" class="autostart" value="true" data-isautostarting="#{this.IsAutoStarting()}" data-id="#{this.Id()}" />
+        <Administration.HomePage.Buttons.AutoStartService />
+      </td>
+      <td>
+        <Administration.HomePage.Buttons.StopService style="#{this.State()==='Running'?'':'display:none'}"/>
+        <Administration.HomePage.Buttons.StartService style="#{this.State()==='Stopping'?'':'display:none'}" />
+        <Administration.HomePage.Buttons.DeleteService style="#{this.State()!=='Running'?'':'display:none'}" />
       </td>
     </tr>
-    <data type="text/javascript-events" src="~/Ui/Admin/Content/Administration.Homepage.Body.Status.Rows.js" />
   </Administration.HomePage.Body.Status.Rows>
 
-  <Administration.HomePage.Body.Status.Error class="error hide">
+  <Administration.HomePage.Buttons.StartService tag="a" href="javascript:void(0)" class="btn default btn-xs blue"
+                                                serverOrigin="/administration/buttons/start-service" mode="server">
+    <data type="text/name-value" name="serviceId"><![CDATA[#{this.Id()}]]></data>
+    Start
+    <data type="text/javascript-events" src="~/Ui/Admin/Content/Administration.HomePage.Buttons.ButtonActions.js" />
+  </Administration.HomePage.Buttons.StartService>
+
+  <Administration.HomePage.Buttons.StopService tag="a" href="javascript:void(0)" class="btn default btn-xs purple"
+                                                serverOrigin="/administration/buttons/stop-service" mode="server">
+    <data type="text/name-value" name="serviceId"><![CDATA[#{this.Id()}]]></data>
+    Stop
+    <data type="text/javascript-events" src="~/Ui/Admin/Content/Administration.HomePage.Buttons.ButtonActions.js" />
+  </Administration.HomePage.Buttons.StopService>
+
+  <Administration.HomePage.Buttons.DeleteService tag="a" href="javascript:void(0)" class="btn default btn-xs grey"
+                                              serverOrigin="/administration/buttons/delete-service" mode="server">
+    <data type="text/name-value" name="serviceId"><![CDATA[#{this.Id()}]]></data>
+    Delete
+    <data type="text/javascript-events" src="~/Ui/Admin/Content/Administration.HomePage.Buttons.ButtonActions.js" />
+  </Administration.HomePage.Buttons.DeleteService>
+
+  <Administration.HomePage.Buttons.AutoStartService tag="input" type="checkbox" 
+                                                    serverOrigin="/administration/buttons/auto-start-service" mode="server"
+                                                    class="autostart" value="true" data-isautostarting="#{this.IsAutoStarting()}">
+    <data type="text/name-value" name="serviceId"><![CDATA[#{this.Id()}]]></data>
+    <data type="text/javascript-events" src="~/Ui/Admin/Content/Administration.HomePage.Buttons.AutoStartService.js" />
+  </Administration.HomePage.Buttons.AutoStartService>
+
+  <Administration.HomePage.Body.Status.Error class="error list-group-item list-group-item-danger" style="display:none">
     <div>An error has happened.</div>
   </Administration.HomePage.Body.Status.Error>
 

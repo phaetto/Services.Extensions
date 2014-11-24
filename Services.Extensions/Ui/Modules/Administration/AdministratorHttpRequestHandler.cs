@@ -1,9 +1,10 @@
-﻿namespace Services.Extensions.Ui.Modules
+﻿namespace Services.Extensions.Ui.Modules.Administration
 {
     using System;
     using System.IO;
     using System.Linq;
     using Chains.Play.Web.HttpListener;
+    using Newtonsoft.Json;
     using Services.Communication.Protocol;
     using Services.Extensions.Contexts.ServiceStarter;
     using Services.Extensions.Ui.Admin;
@@ -21,7 +22,7 @@
 
         public const string AdminHomepageUriPath = "/administration/";
 
-        private static readonly string PathToContent = string.Format("{0}{1}Ui{1}Admin{1}Content{1}{2}", AppDomain.CurrentDomain.BaseDirectory, Path.DirectorySeparatorChar, "administration.xml");
+        public static readonly string PathToContent = string.Format("{0}{1}Ui{1}Admin{1}Content{1}{2}", AppDomain.CurrentDomain.BaseDirectory, Path.DirectorySeparatorChar, "administration.xml");
 
         public AdministratorHttpRequestHandler(
             HttpServer httpServer,
@@ -40,37 +41,34 @@
 
         public override void Get(xTagContext xTagContext, bool isAjax)
         {
+            if (!isAjax)
+            {
+                return;
+            }
+
             var reportedData = workUnitContext.AdminServer.Do(new Send<GetReportedDataReturnData>(new GetReportedData()));
 
-            Databind(xTagContext, reportedData, persistentServiceStarterContext);
+            var autoStartingServices =
+                reportedData.Reports.Where(
+                    x => persistentServiceStarterContext.Data.ServicesToStart.Any(y => y.Id == x.Value.StartData.Id))
+                    .Select(x => x.Value.StartData.Id);
+
+            var serviceReports = reportedData.Reports.Select(
+                x => new ServiceReportItem
+                {
+                    Id = x.Value.StartData.Id,
+                    ServiceName = x.Value.StartData.ServiceName,
+                    FormattedUptime = x.Value.Uptime.ToString(@"dd\.hh\:mm\:ss"),
+                    IsAutoStarting = autoStartingServices.Any(y => y == x.Value.StartData.Id),
+                    State = x.Value.WorkerState.ToString()
+                });
+
+            xTagContext.xTag.Data["runtimeApplicationData"] = JsonConvert.SerializeObject(serviceReports);
         }
 
         public override void Post(xTagContext xTagContext, bool isAjax)
         {
-            if (isAjax)
-            {
-                if (xTagContext.xTag.Data.ContainsKey("serviceId"))
-                {
-                    var id = xTagContext.xTag.Data["serviceId"];
-                    var reportedData = workUnitContext.AdminServer.Do(new Send<GetReportedDataReturnData>(new GetReportedData()));
-
-                    if (persistentServiceStarterContext.Data.ServicesToStart.Any(x => x.Id == id))
-                    {
-                        persistentServiceStarterContext.Data.ServicesToStart.Remove(
-                            persistentServiceStarterContext.Data.ServicesToStart.First(x => x.Id == id));
-                    }
-                    else
-                    {
-                        persistentServiceStarterContext.Data.ServicesToStart.Add(
-                            reportedData.Reports.First(x => x.Value.StartData.Id == id).Value.StartData);
-                    }
-
-                    persistentServiceStarterContext.Do(
-                        new UpdatePersistentStarterData(persistentServiceStarterContext.Data.ServicesToStart));
-
-                    Databind(xTagContext, reportedData, persistentServiceStarterContext);
-                }
-            }
+            new NotImplementedException();
         }
 
         public override void Put(xTagContext xTagContext, bool isAjax)

@@ -2,37 +2,16 @@
     ready: function() {
         var self = this;
 
-        self.ParseAutoStarting = function() {
-            $(".autostart").each(function(i, el) {
-                var $el = $(el);
-                var checked = $el.attr("data-isautostarting") === "true" ? true : false;
-                $el.attr("checked", checked);
-            });
-        };
-
         self.Refresh = function() {
-            $.ajax({
-                url: "/administration/data",
-                type: 'get'
-            }).done(function( data ) {
-                self.AdminRows.Databind(data);
-                self.ParseAutoStarting();
+            self.AdminRows.GetValues({}, function() {
+                self.AdminRows.Databind(JSON.parse(self.AdminRows.Data.runtimeApplicationData));
                 setTimeout(self.Refresh, 1000);
-            }).error(function() {
+            }, function() {
                 self.AdminError.$().show();
+                setTimeout(self.Refresh, 5000);
             });
         };
 
         setTimeout(self.Refresh, 100);
-
-        self.$().on("change", ".autostart", function() {
-            $.ajax({
-                url: "/administration/data",
-                type: 'post',
-                data: {
-                    serviceId: encodeURIComponent($(this).attr("data-id"))
-                }
-            });
-        });
     }
 }
