@@ -25,14 +25,10 @@
                 new FilePersistentStoreWithMemorySnapshotCache<PersistentServiceStarterData>(
                     string.Format(PersistentServiceStarterContext.DataFolderUnformatted, Path.DirectorySeparatorChar)));
 
-            new Thread(StartOtherServices).Start();
+            ThreadPool.QueueUserWorkItem(StartOtherServices);
         }
 
-        public ServiceStarterContext()
-        {
-        }
-
-        private void StartOtherServices()
+        private void StartOtherServices(object state)
         {
             foreach (var serviceEntry in PersistentServiceStarterContext.Data.ServicesToStart)
             {
