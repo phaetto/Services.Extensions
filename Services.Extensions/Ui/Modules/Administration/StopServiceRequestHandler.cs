@@ -28,7 +28,7 @@
 
         public override void Get(xTagContext xTagContext, bool isAjax)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public override void Post(xTagContext xTagContext, bool isAjax)
@@ -54,12 +54,12 @@
 
         public override void Put(xTagContext xTagContext, bool isAjax)
         {
-            throw new System.NotImplementedException();
+            throw new System.NotSupportedException();
         }
 
         public override void Delete(xTagContext xTagContext, bool isAjax)
         {
-            throw new System.NotImplementedException();
+            throw new System.NotSupportedException();
         }
     }
 }

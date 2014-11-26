@@ -29,7 +29,7 @@
 
         public override void Get(xTagContext xTagContext, bool isAjax)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public override void Post(xTagContext xTagContext, bool isAjax)
@@ -62,9 +62,8 @@
             }
             else
             {
-                data =
-                    DeserializableSpecification<StartWorkerData>.DeserializeFromJson(
-                        xTagContext.xTag.Data["serviceSpecification"]);
+                // Only starts service that already was started before.
+                return;
             }
 
             workUnitContext.AdminServer.Do(
@@ -78,12 +77,12 @@
 
         public override void Put(xTagContext xTagContext, bool isAjax)
         {
-            throw new System.NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public override void Delete(xTagContext xTagContext, bool isAjax)
         {
-            throw new System.NotImplementedException();
+            throw new NotSupportedException();
         }
     }
 }

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Services.Extensions</RootNamespace>
     <AssemblyName>Services.Extensions</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -55,13 +55,14 @@
   <ItemGroup>
     <Reference Include="Chains, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Chains.0.9.5.5\lib\Chains.dll</HintPath>
+      <HintPath>..\packages\Chains.0.9.5.7\lib\Chains.dll</HintPath>
     </Reference>
     <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Services.Management.0.9.5.5\lib\Ionic.Zip.dll</HintPath>
+      <HintPath>..\packages\Services.Management.0.9.5.7\lib\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -70,23 +71,23 @@
     </Reference>
     <Reference Include="Services.Communication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Services.Communication.0.9.5.5\lib\Services.Communication.dll</HintPath>
+      <HintPath>..\packages\Services.Communication.0.9.5.7\lib\Services.Communication.dll</HintPath>
     </Reference>
     <Reference Include="Services.Management, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Services.Management.0.9.5.5\lib\Services.Management.dll</HintPath>
+      <HintPath>..\packages\Services.Management.0.9.5.7\lib\Services.Management.dll</HintPath>
     </Reference>
     <Reference Include="SuperSocket.Common, Version=1.6.3.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Services.Management.0.9.5.5\lib\SuperSocket.Common.dll</HintPath>
+      <HintPath>..\packages\Services.Management.0.9.5.7\lib\SuperSocket.Common.dll</HintPath>
     </Reference>
     <Reference Include="SuperSocket.SocketBase, Version=1.6.3.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Services.Management.0.9.5.5\lib\SuperSocket.SocketBase.dll</HintPath>
+      <HintPath>..\packages\Services.Management.0.9.5.7\lib\SuperSocket.SocketBase.dll</HintPath>
     </Reference>
     <Reference Include="SuperSocket.SocketEngine, Version=1.6.3.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Services.Management.0.9.5.5\lib\SuperSocket.SocketEngine.dll</HintPath>
+      <HintPath>..\packages\Services.Management.0.9.5.7\lib\SuperSocket.SocketEngine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -94,7 +95,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="xLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\xLibrary.0.10.1.0\lib\xLibrary.dll</HintPath>
+      <HintPath>..\packages\xLibrary.0.10.1.2\lib\xLibrary.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -203,7 +204,9 @@
     </Content>
     <Content Include="update-files.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Ui\Admin\Content\img\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
