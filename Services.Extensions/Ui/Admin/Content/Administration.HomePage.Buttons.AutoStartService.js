@@ -1,5 +1,5 @@
 ﻿{
-    databind: function() {
+    databound: function() {
         var checked = this.$().attr("data-isautostarting") === "true" ? true : false;
         this.$().attr("checked", checked);
     },

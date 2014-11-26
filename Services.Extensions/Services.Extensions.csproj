@@ -108,9 +108,13 @@
     <Compile Include="Contexts\ServiceStarter\UpdateStartingServices.cs" />
     <Compile Include="Ui\AdministrationServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ui\Admin\Footer.cs" />
+    <Compile Include="Ui\Admin\Header.cs" />
+    <Compile Include="Ui\Admin\Page.cs" />
     <Compile Include="Ui\Admin\ServiceReportItem.cs" />
     <Compile Include="Ui\Modules\Administration\AdministratorHttpRequestHandler.cs" />
     <Compile Include="Ui\Modules\Administration\AutoStartServiceRequestHandler.cs" />
+    <Compile Include="Ui\Modules\Administration\RowsHttpRequestHandler.cs" />
     <Compile Include="Ui\Modules\Administration\DeleteServiceRequestHandler.cs" />
     <Compile Include="Ui\Modules\Administration\StopServiceRequestHandler.cs" />
     <Compile Include="Ui\Modules\Administration\StartServiceRequestHandler.cs" />

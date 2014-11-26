@@ -27,7 +27,9 @@
 
             if (httpServer != null)
             {
-                new AdministratorHttpRequestHandler(httpServer, workUnitContext, persistentServiceStarterContext);
+                new AdministratorHttpRequestHandler(httpServer, workUnitContext);
+
+                new RowsHttpRequestHandler(httpServer, workUnitContext, persistentServiceStarterContext);
 
                 new StartServiceRequestHandler(httpServer, workUnitContext);
                 new StopServiceRequestHandler(httpServer, workUnitContext);

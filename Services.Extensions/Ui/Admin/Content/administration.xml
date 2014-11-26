@@ -2,12 +2,12 @@
 <Templates>
 
   <Administration.HomePage tag="html" xlogin="">
-    <Administration.HomePage.Head />
+    <Administration.Head datasource="Header" />
     <Administration.HomePage.Body />
   </Administration.HomePage>
 
-  <Administration.HomePage.Head tag="head">
-    <title name="Title">#{this.Header.Title()}</title>
+  <Administration.Head tag="head">
+    <title>#{this.HeadTitle()}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
@@ -22,19 +22,22 @@
     <data type="text/css" src="/Ui/Admin/Content/layout3/css/layout.css" />
     <data type="text/css" src="/Ui/Admin/Content/layout3/css/themes/default.css" />
     <data type="text/css" src="/Ui/Admin/Content/layout3/css/custom.css" />
-  </Administration.HomePage.Head>
+  </Administration.Head>
 
   <Administration.HomePage.Body tag="body">
-    <Administration.Header />
-    <div class="page-content">
-      <div class="container">
-        <!--<Administration.HomePage.Breadcrumbs />-->
-        <Administration.HomePage.Body.Status />
-        <Administration.HomePage.Body.Performance />
+    <Administration.Header datasource="Header" />
+    <div class="page-container">
+      <Administration.HomePage.PageHead datasource="Header" />
+      <!--<Administration.HomePage.Breadcrumbs datasource="Header" />-->
+      <div class="page-content">
+        <div class="container">
+          <Administration.HomePage.Body.Status />
+          <Administration.HomePage.Body.Performance />
+        </div>
       </div>
     </div>
-    <Administration.PreFooter />
-    <Administration.Footer />
+    <Administration.PreFooter datasource="Footer" />
+    <Administration.Footer datasource="Footer" />
     <Administration.ScrollToTop />
   </Administration.HomePage.Body>
 
@@ -44,7 +47,7 @@
         <div class="col-md-3 col-sm-6 col-xs-12 footer-block">
           <h2>About</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam dolore.
+            #{this.AboutText()}
           </p>
         </div>
         <div class="col-md-3 col-sm-6 col-xs12 footer-block">
@@ -99,7 +102,7 @@
 
   <Administration.Footer class="page-footer">
     <div class="container">
-      Copyright 2014-#{this.Footer.ToYear()} Alexander Mantzoukas. All Rights Reserved.
+      Copyright 2014-#{this.ToYear()} #{this.CopyrightName()}. All Rights Reserved.
     </div>
   </Administration.Footer>
 
@@ -152,6 +155,16 @@
     <!-- END HEADER MENU -->
   </Administration.Header>
 
+  <Administration.HomePage.PageHead class="page-head">
+    <div class="container">
+      <div class="page-title">
+        <h1>
+          #{this.Title()} <small>#{this.Subtitle()}</small>
+        </h1>
+      </div>
+    </div>
+  </Administration.HomePage.PageHead>
+
   <Administration.HomePage.Breadcrumbs class="page-breadcrumb breadcrumb">
     <li>
       <a href="#{this.Header.DashboardUri()}">Home</a>
@@ -191,7 +204,7 @@
     <data type="text/javascript-events" src="~/Ui/Admin/Content/Administration.Homepage.Body.Status.js" />
   </Administration.HomePage.Body.Status>
 
-  <Administration.HomePage.Body.Status.Rows id="adminRows" mode="server" serverOrigin="/administration" tag="tbody">
+  <Administration.HomePage.Body.Status.Rows id="adminRows" mode="server" serverOrigin="/administration/dashboard/rows" tag="tbody">
     <data type="text/name-value" name="serviceId"><![CDATA[]]></data>
     <data type="text/name-value" name="runtimeApplicationData"><![CDATA[[]]]></data>
     <tr>
@@ -230,7 +243,7 @@
     <data type="text/javascript-events" src="~/Ui/Admin/Content/Administration.HomePage.Buttons.ButtonActions.js" />
   </Administration.HomePage.Buttons.DeleteService>
 
-  <Administration.HomePage.Buttons.AutoStartService tag="input" type="checkbox" 
+  <Administration.HomePage.Buttons.AutoStartService tag="input" type="checkbox"
                                                     serverOrigin="/administration/buttons/auto-start-service" mode="server"
                                                     class="autostart" value="true" data-isautostarting="#{this.IsAutoStarting()}">
     <data type="text/name-value" name="serviceId"><![CDATA[#{this.Id()}]]></data>
