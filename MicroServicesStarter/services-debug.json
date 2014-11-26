@@ -12,5 +12,5 @@
 		ContextType: "Services.Extensions.Ui.AdministrationServer",
 		Parameters: [ 'localhost', 8075 ],
 		DllPath: "Services.Extensions.dll",
-	}
+	},
 ]

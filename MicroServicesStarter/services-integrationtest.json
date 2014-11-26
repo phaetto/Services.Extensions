@@ -1,11 +1,15 @@
 ﻿[
 	{
-		Id: "services-admin-debug",
+		Id: "services-admin-alpha",
 		ServiceName: "Services.Extensions",
 		ContextType: "Services.Extensions.Ui.AdministrationServer",
-		Parameters: [ 'localhost', 8080 ],
+		ContextServerHost: '10.0.0.6',
+		ContextServerPort: 8080,
+		ContextHttpData : {
+			Path: '/administration/context/services-admin-alpha'
+		},
 		DllPath: "Services.Extensions.dll",
-		"AdminHost":"localhost",
+		"AdminHost":"10.0.0.6",
 		"AdminPort": 11001,
 	},
 
