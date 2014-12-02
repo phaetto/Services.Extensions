@@ -5,12 +5,16 @@
 		ContextType: "Services.Extensions.Ui.WorkUnitServer",
 		DllPath: "Services.Extensions.dll",
 	},
-	
+
 	{
 		Id: "services-admin-debug",
 		ServiceName: "Services.Extensions",
 		ContextType: "Services.Extensions.Ui.AdministrationServer",
-		Parameters: [ 'localhost', 8075 ],
+		ContextServerHost: 'localhost',
+		ContextServerPort: 8075,
+		ContextHttpData : {
+			Path: '/administration/'
+		},
 		DllPath: "Services.Extensions.dll",
 	},
 ]
