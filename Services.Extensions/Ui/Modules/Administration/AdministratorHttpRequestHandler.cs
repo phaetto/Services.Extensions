@@ -13,18 +13,15 @@
     {
         private readonly WorkUnitContext workUnitContext;
 
-        public const string AdminHomepageUriPath = "/administration/";
-
         public static readonly string PathToContent = string.Format("{0}{1}Ui{1}Admin{1}Content{1}{2}", AppDomain.CurrentDomain.BaseDirectory, Path.DirectorySeparatorChar, "administration.xml");
 
-        public AdministratorHttpRequestHandler(
-            HttpServer httpServer,
-            WorkUnitContext workUnitContext)
+        public AdministratorHttpRequestHandler(HttpServer httpServer, WorkUnitContext workUnitContext)
             : base(
                 httpServer,
-                AdminHomepageUriPath,
+                workUnitContext.WorkerData.ContextHttpData.Path,
                 PathToContent,
-                "Administration.HomePage")
+                "Administration.HomePage",
+                allowToSharePath: true)
         {
             this.workUnitContext = workUnitContext;
         }

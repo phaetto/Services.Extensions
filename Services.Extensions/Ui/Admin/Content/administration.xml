@@ -245,9 +245,10 @@
 
   <Administration.HomePage.Buttons.AutoStartService tag="input" type="checkbox"
                                                     serverOrigin="/administration/buttons/auto-start-service" mode="server"
-                                                    class="autostart" value="true" data-isautostarting="#{this.IsAutoStarting()}">
+                                                    class="autostart" value="true"
+                                                    checked='#{this.IsAutoStarting() ? true : false}'>
     <data type="text/name-value" name="serviceId"><![CDATA[#{this.Id()}]]></data>
-    <data type="text/javascript-events" src="~/Ui/Admin/Content/Administration.HomePage.Buttons.AutoStartService.js" />
+    <data type="text/javascript-events" src="~/Ui/Admin/Content/Administration.HomePage.Buttons.ButtonActions.js" />
   </Administration.HomePage.Buttons.AutoStartService>
 
   <Administration.HomePage.Body.Status.Error class="error list-group-item list-group-item-danger" style="display:none">

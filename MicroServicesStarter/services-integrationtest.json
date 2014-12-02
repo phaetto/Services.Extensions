@@ -6,7 +6,7 @@
 		ContextServerHost: '10.0.0.6',
 		ContextServerPort: 8080,
 		ContextHttpData : {
-			Path: '/administration/context/services-admin-alpha'
+			Path: '/administration/'
 		},
 		DllPath: "Services.Extensions.dll",
 		"AdminHost":"10.0.0.6",

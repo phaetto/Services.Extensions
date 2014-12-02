@@ -2,42 +2,35 @@
 {
     using System;
     using System.Net;
-    using Chains;
     using Chains.Play.Web;
     using Chains.Play.Web.HttpListener;
     using xLibrary;
     using xLibrary.Actions;
 
-    public abstract class xTagHttpHtmlAndRestHandler : AbstractChain, IHttpRequestHandler
+    public abstract class xTagHttpHtmlAndRestHandler : xTagHttpRestHandler
     {
-        private readonly string libraryDocument;
-
         private readonly string optionalRestTag;
 
-        private readonly bool skipCheckForId;
-
-        protected readonly string TagName;
-
-        protected readonly string RequestPath;
-
-        protected xTagHttpHtmlAndRestHandler(HttpServer httpServer, string path, string libraryDocument, string tagName, string optionalRestTag = null, bool skipCheckForId = false)
+        protected xTagHttpHtmlAndRestHandler(
+            HttpServer httpServer,
+            string path,
+            string libraryDocument,
+            string tagName,
+            string optionalRestTag = null,
+            bool skipCheckForId = false,
+            bool allowToSharePath = false)
+            : base(httpServer, path, libraryDocument, tagName, skipCheckForId, allowToSharePath)
         {
-            this.libraryDocument = libraryDocument;
-            this.TagName = tagName;
             this.optionalRestTag = optionalRestTag;
-            this.skipCheckForId = skipCheckForId;
-            RequestPath = path.EndsWith("/") ? path.Substring(0, path.Length - 1) : path;
-            httpServer.Modules.Add(this);
-            httpServer.AddPath(RequestPath + "/");
         }
 
-        public bool ResolveRequest(HttpListenerContext context)
+        public override bool ResolveRequest(HttpListenerContext context)
         {
             try
             {
                 if (CheckPathForMatch(context))
                 {
-                    var xContext = new xContext(new HttpContextInfo(context)).Do(new LoadLibrary(libraryDocument));
+                    var xContext = new xContext(new HttpContextInfo(context)).Do(new LoadLibrary(LibraryDocument));
 
                     xContext.DoFirstNotNull(
                         xcontext =>
@@ -48,7 +41,7 @@
                                         onPost: Post,
                                         onPut: Put,
                                         onDelete: Delete,
-                                        skipCheckForId: skipCheckForId)),
+                                        skipCheckForId: SkipCheckForId)),
                         RenderHtmlTag).ApplyOutputToHttpContext();
 
                     return true;
@@ -71,10 +64,5 @@
             return context.Request.Url.AbsolutePath.ToLowerInvariant() == RequestPath
                 || context.Request.Url.AbsolutePath.ToLowerInvariant() == RequestPath + "/";
         }
-
-        public abstract void Get(xTagContext xTagContext, bool isAjax);
-        public abstract void Post(xTagContext xTagContextxtag, bool isAjax);
-        public abstract void Put(xTagContext xTagContext, bool isAjax);
-        public abstract void Delete(xTagContext xTagContext, bool isAjax);
     }
 }

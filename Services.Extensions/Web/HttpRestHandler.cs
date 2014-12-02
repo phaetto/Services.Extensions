@@ -5,21 +5,14 @@
     using Chains;
     using Chains.Play.Web.HttpListener;
 
-    public abstract class HttpRestHandler : AbstractChain, IHttpRequestHandler
+    public abstract class HttpRestHandler : HttpHandlerBase
     {
-        protected readonly string RequestPath;
-
-        protected readonly string DefaultDocument;
-
-        protected HttpRestHandler(HttpServer httpServer, string path, string defaultDocument = null)
+        protected HttpRestHandler(HttpServer httpServer, string path, string defaultDocument = null, bool allowToSharePath = false)
+            : base(httpServer, path, defaultDocument, allowToSharePath)
         {
-            DefaultDocument = defaultDocument;
-            RequestPath = path.EndsWith("/") ? path.Substring(0, path.Length - 1) : path;
-            httpServer.Modules.Add(this);
-            httpServer.AddPath(RequestPath + "/");
         }
 
-        public bool ResolveRequest(HttpListenerContext context)
+        public override bool ResolveRequest(HttpListenerContext context)
         {
             try
             {
@@ -49,13 +42,6 @@
             }
 
             return false;
-        }
-
-        private bool CheckPathForMatch(HttpListenerContext context)
-        {
-            return context.Request.Url.AbsolutePath.ToLowerInvariant() == RequestPath
-                || context.Request.Url.AbsolutePath.ToLowerInvariant() == RequestPath + "/"
-                || (!string.IsNullOrWhiteSpace(DefaultDocument) && context.Request.Url.AbsolutePath.ToLowerInvariant() == RequestPath + "/" + DefaultDocument);
         }
 
         public abstract void Get(HttpListenerContext context);

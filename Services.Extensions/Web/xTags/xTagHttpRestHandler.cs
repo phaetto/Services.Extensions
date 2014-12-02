@@ -8,36 +8,38 @@
     using xLibrary;
     using xLibrary.Actions;
 
-    public abstract class xTagHttpRestHandler : AbstractChain, IHttpRequestHandler
+    public abstract class xTagHttpRestHandler : HttpHandlerBase
     {
-        private readonly string libraryDocument;
+        protected readonly string LibraryDocument;
 
-        private readonly string tagName;
+        protected readonly string TagName;
 
-        private readonly bool skipCheckForId;
+        protected readonly bool SkipCheckForId;
 
-        protected readonly string RequestPath;
-
-        protected xTagHttpRestHandler(HttpServer httpServer, string path, string libraryDocument, string tagName, bool skipCheckForId = false)
+        protected xTagHttpRestHandler(
+            HttpServer httpServer,
+            string path,
+            string libraryDocument,
+            string tagName,
+            bool skipCheckForId = false,
+            bool allowToSharePath = false)
+            : base(httpServer, path, allowToSharePath: allowToSharePath)
         {
-            this.libraryDocument = libraryDocument;
-            this.tagName = tagName;
-            this.skipCheckForId = skipCheckForId;
-            RequestPath = path.EndsWith("/") ? path.Substring(0, path.Length - 1) : path;
-            httpServer.Modules.Add(this);
-            httpServer.AddPath(RequestPath + "/");
+            this.LibraryDocument = libraryDocument;
+            this.TagName = tagName;
+            this.SkipCheckForId = skipCheckForId;
         }
 
-        public bool ResolveRequest(HttpListenerContext context)
+        public override bool ResolveRequest(HttpListenerContext context)
         {
             try
             {
                 if (CheckPathForMatch(context))
                 {
                     var resultContext =
-                        new xContext(new HttpContextInfo(context)).Do(new LoadLibrary(libraryDocument))
-                            .Do(new CreateTag(tagName))
-                            .Do(new CheckIfRestRequest(onGet: Get, onPost: Post, onPut: Put, onDelete: Delete, skipCheckForId: skipCheckForId));
+                        new xContext(new HttpContextInfo(context)).Do(new LoadLibrary(LibraryDocument))
+                            .Do(new CreateTag(TagName))
+                            .Do(new CheckIfRestRequest(onGet: Get, onPost: Post, onPut: Put, onDelete: Delete, skipCheckForId: SkipCheckForId));
 
                     if (resultContext != null)
                     {
@@ -56,14 +58,8 @@
             return false;
         }
 
-        private bool CheckPathForMatch(HttpListenerContext context)
-        {
-            return context.Request.Url.AbsolutePath.ToLowerInvariant() == RequestPath
-                || context.Request.Url.AbsolutePath.ToLowerInvariant() == RequestPath + "/";
-        }
-
         public abstract void Get(xTagContext xTagContext, bool isAjax);
-        public abstract void Post(xTagContext xTagContext, bool isAjax);
+        public abstract void Post(xTagContext xTagContextxtag, bool isAjax);
         public abstract void Put(xTagContext xTagContext, bool isAjax);
         public abstract void Delete(xTagContext xTagContext, bool isAjax);
     }

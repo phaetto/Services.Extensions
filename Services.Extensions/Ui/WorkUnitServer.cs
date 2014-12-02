@@ -17,7 +17,7 @@
 
         private readonly HttpServer httpServer;
 
-        public const string ServiceHomepageUriPath = "/administration/services/{0}/";
+        public const string ServiceHomepageUriPath = "{0}services/{1}/";
 
         public WorkUnitServer(WorkUnitContext workUnitContext)
         {
@@ -37,7 +37,7 @@
                                 .Value.StartData;
 
 
-                        serverData = new ServerHost(adminData.Parameters[0].ToString(), int.Parse(adminData.Parameters[1].ToString()));
+                        serverData = new ServerHost(adminData.ContextServerHost, adminData.ContextServerPort, adminData.ContextHttpData.Path);
 
                         break;
                     }
@@ -46,7 +46,8 @@
                 }
 
                 var currentServiceUriPath =
-                    Uri.EscapeUriString(string.Format(ServiceHomepageUriPath, workUnitContext.WorkerData.Id));
+                    Uri.EscapeUriString(
+                        string.Format(ServiceHomepageUriPath, serverData.Parent.Path, workUnitContext.WorkerData.Id));
 
                 // Get the options that have started the server, and use them
                 httpServer =
